@@ -12,9 +12,11 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
-        "spatie/laravel-permission": "^6.9"
+        "spatie/laravel-permission": "^6.9",
+        "wireui/wireui": "^2.2"
     },
     "require-dev": {
+        "composer/composer": "^2.8",
         "fakerphp/faker": "^1.23",
         "ibex/crud-generator": "^2.1",
         "laravel/pail": "^1.1",
