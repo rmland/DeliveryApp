@@ -19,7 +19,7 @@
                         <x-wireui-errors title="Encontramos {errors} error(es) de validacion" />
                     </div>
                     <div class="col-12 d-flex justify-content-center mt-3">
-                        <x-wireui-button type="submit" emerald label="Aceptar" />
+                    <x-wireui-button label="Aceptar" right-icon="check" flat interaction:solid="positive" type="submit"/>
                     </div>
                 </div>
             </div>

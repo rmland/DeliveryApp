@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-primary fw-bold fs-2 mb-0">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{$user->name ?? __('Show') . " " . __('User')}}
         </h2>
     </x-slot>
@@ -66,11 +66,9 @@
                               class="text-end">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" 
-                                    class="btn btn-danger"
-                                    onclick="return confirm('¿Está seguro que desea eliminar este registro?')">
-                                <i class="fa fa-trash me-2"></i>{{__('Delete')}}
-                            </button>
+                            <x-wireui-button label="Delete" right-icon="trash" interaction="negative" type="submit"
+                                                    rounded interaction="negative"
+                                                    onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
                         </form>
                     </div>
                 </div>

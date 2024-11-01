@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-primary fw-bold fs-2 mb-0">
-            Roles
-        </h2>
+        <a href="roles.index">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Roles
+            </h2>
+        </a>
     </x-slot>
 
     <div class="container-fluid py-4">
@@ -14,7 +16,9 @@
                             <h5 class="fw-bold text-primary mb-0">
                                 {{__('Roles')}}
                             </h5>
-                            <x-wireui-button label="Agregar" right-icon="plus" interaction="positive" href="{{route('roles.create')}}"/>
+                            <a href="{{route('roles.create')}}" >
+                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive"/>
+                            </a>
                         </div>
                     </div>
 
@@ -49,14 +53,18 @@
 
                                             <td class="text-end pe-4">
                                                 <div class="btn-group gap-1">
-                                                    <x-wireui-mini-button rounded info icon="information-circle" href="{{route('roles.show', $role->id)}}" />
-                                                    <x-wireui-mini-button squared primary icon="pencil"  href="{{route('roles.edit', $role->id)}}"/>
+                                                <a href="{{route('roles.show', $role->id)}}">
+                                                    <x-wireui-button rounded warning label="Detalles" right-icon="information-circle"/>
+                                                </a>
+                                                    <a href="{{route('roles.edit', $role->id)}}"/>
+                                                        <x-wireui-button rounded teal right-icon="pencil" primary label="Editar" />
+                                                    </a>
                                                     <form action="{{route('roles.destroy', $role->id)}}" 
                                                           method="POST" 
                                                           class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <x-wireui-mini-button rounded negative icon="x-mark" type="submit" rounded interaction="negative" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"/>
+                                                        <x-wireui-button label="Eliminar" right-icon="trash" interaction="negative" type="submit" rounded interaction="negative" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
                                                     </form>
                                                 </div>
                                             </td>

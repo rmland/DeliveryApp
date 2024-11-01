@@ -5,9 +5,12 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    {{-- <a href="{{ route('dashboard') }}">
                         <x-application-mark class="block h-9 w-auto" />
-                    </a>
+                    </a> --}}
+                   <a href="{{route('dashboard')}}">
+                    <x-application-logo/>
+                   </a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -20,6 +23,12 @@
                     </x-nav-link>
                     <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                         {{ __('Users') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('public.menu') }}" :active="request()->routeIs('public.menu')">
+                        {{ __('Menu') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('public.contacto') }}" :active="request()->routeIs('public.contacto')">
+                        {{ __('Contacto') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -153,6 +162,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                 {{ __('Users') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('public.menu') }}" :active="request()->routeIs('public.menu')">
+                {{ __('Menu') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('public.contacto') }}" :active="request()->routeIs('public.contacto')">
+                {{ __('Contacto') }}
             </x-responsive-nav-link>
         </div>
 

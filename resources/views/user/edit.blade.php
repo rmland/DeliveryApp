@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-primary fw-bold fs-2 mb-0">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{__('Update')}} User
         </h2>
     </x-slot>
@@ -29,12 +29,6 @@
                             {{method_field('PATCH')}}
                             
                             @include('user.form')
-
-                            <div class="text-end mt-4">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-save me-2"></i>{{__('Update')}}
-                                </button>
-                            </div>
                         </form>
                     </div>
                 </div>

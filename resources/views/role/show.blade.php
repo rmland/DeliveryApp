@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-primary fw-bold fs-2 mb-0">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{$role->name ?? __('Show') . " " . __('Role')}}
         </h2>
     </x-slot>
@@ -10,8 +10,8 @@
             <div class="col-lg-8">
                 <div class="card border-0 shadow">
                     <div class="card-header bg-white border-bottom py-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="fw-bold text-primary mb-0">
+                        <div class="d-flex justify-content-between align-items-center">                 
+                            <h5 class="font-semibold text-xl text-gray-800 leading-tight">
                                 {{__('Show')}} Role
                             </h5>
                             <div class="btn-group gap-1">
@@ -46,11 +46,9 @@
                               class="text-end">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" 
-                                    class="btn btn-danger"
-                                    onclick="return confirm('¿Está seguro que desea eliminar este registro?')">
-                                <i class="fa fa-trash me-2"></i>{{__('Delete')}}
-                            </button>
+                            <x-wireui-button label="Eliminar" right-icon="trash" interaction="negative" type="submit"
+                                                    rounded interaction="negative"
+                                                    onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
                         </form>
                     </div>
                 </div>

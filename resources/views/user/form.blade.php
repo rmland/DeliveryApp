@@ -40,11 +40,10 @@
             <x-wireui-input type="text" name="profile_photo_path" value="{{ old('profile_photo_path', $user?->profile_photo_path) }}" id="profile_photo_path" placeholder="Profile Photo Path"/>
             {!! $errors->first('profile_photo_path') !!}
         </div>
-
                         <x-wireui-errors title="Encontramos {errors} error(es) de validacion" />
                     </div>
                     <div class="col-12 d-flex justify-content-center mt-3">
-                        <x-wireui-button type="submit" emerald label="Aceptar" />
+                        <x-wireui-button label="Aceptar" right-icon="check" flat interaction:solid="positive" type="submit"/>
                     </div>
                 </div>
             </div>

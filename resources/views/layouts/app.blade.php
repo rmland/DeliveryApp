@@ -4,8 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{__('Deli-Fast')}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -32,7 +31,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
@@ -40,8 +39,53 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <div class="bg-white py-3 pt-0">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-10 pt-0 shadow-md sm:rounded-lg">
+                        <div class="">
+                            <!-- Contenido aquí -->
+                            {{ $slot }}
+                        </div>
+                    </div>
+                </div>
+                
             </main>
+
+            {{-- Footer --}}
+            <footer class="footer bg-dark text-white">
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>DelyFast</h5>
+                            <p>Somos una plataforma dedicada a ofrecerte el mejor servicio de pedidos de comida en l&#237;nea.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Enlaces R&#225;pidos</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="{{route('dashboard')}}" class="text-white">Inicio</a></li>
+                                <li><a href="#" class="text-white">Men&#250;</a></li>
+                                <li><a href="#" class="text-white">Carrito</a></li>
+                                <li><a href="{{route('users.index')}}" class="text-white">Administraci&#243;n</a></li>
+                                <li><a href="#" class="text-white">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>S&#237;guenos</h5>
+                            <div class="d-flex">
+                                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            <p>&copy; 2024 MiSitio. Todos los derechos reservados.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            
         </div>
 
         @stack('modals')
