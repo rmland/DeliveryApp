@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -16,6 +17,13 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
+        if($request->input('search')){
+            $search = $request->input('search');
+            $users = User::where('name','LIKE',"%".$search."%")->orwhere('email','LIKE',"%".$search."%")->paginate(10);
+            return view('user.index', compact('users'))
+            ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
+        }
+
         $users = User::paginate(10);
 
         return view('user.index', compact('users'))
@@ -58,9 +66,10 @@ class UserController extends Controller
      */
     public function edit($id): View
     {
+        $rol = Role::where('');
         $user = User::find($id);
 
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('user','rol'));
     }
 
     /**
@@ -68,7 +77,16 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user): RedirectResponse
     {
-        $user->update($request->validated());
+        $user->update($request->validated());        
+
+        if($request->input('rol')){
+            $rol = $request->input('rol');
+            $oldRole = $user->getRoleNames()->first();
+            
+            $user->removeRole($oldRole);
+
+            $user->assignRole($rol);
+        }
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');

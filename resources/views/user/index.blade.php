@@ -9,6 +9,11 @@
     <div class="container-fluid py-4">
         <div class="row justify-content-center">
             <div class="col-lg-10">
+
+                    <form action="#" method="get">
+                    <input name="search" type="text" placeholder="Busca un usuario">
+                    <x-wireui-button type="submit" label="Buscar" />
+                </form>
                 <div class="card border-0 shadow">
                     <div class="card-header bg-white border-bottom py-3">
                         <div class="d-flex justify-content-between align-items-center">
@@ -30,35 +35,31 @@
                     @endif
 
                     <div class="card-body p-0">
+                        @if ($users->count())
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th class="fw-bold text-dark ps-4">No</th>
-
+                                        <th class="fw-bold text-dark ps-4">ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Profile Photo Path</th>
-
                                         <th class="fw-bold text-dark text-end pe-4">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
-                                        <td class="ps-4">{{++$i}}</td>
+                                        <td class="ps-4">{{$user->id}}</td>
 
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->profile_photo_path }}</td>
-
                                         <td class="text-end pe-4">
                                             <div class="btn-group gap-1">
                                                 <a href="{{route('users.show', $user->id)}}" >
                                                     <x-wireui-button rounded warning label="Detalles" right-icon="information-circle"/>
                                                 </a>
                                                     <a href="{{route('users.edit', $user->id)}}" />
-                                                        <x-wireui-button rounded teal right-icon="pencil" primary label="Editar" />
+                                                        <x-wireui-button rounded teal right-icon="pencil" label="Editar" />
                                                     </a>
                                                 <form action="{{route('users.destroy', $user->id)}}" method="POST"
                                                     class="d-inline">
@@ -75,8 +76,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else
+                        <x-wireui-alert title="No hay usuarios registrados!" warning />
+                        @endif
+                       
                     </div>
-
                     <div class="card-footer bg-white py-3">
                         {!!$users->withQueryString()->links()!!}
                     </div>

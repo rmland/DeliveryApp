@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <a href="{{route('roles.index')}}">
+        <a href="{{route('categorias.index')}}">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Roles
+                Categorias
             </h2>
         </a>
     </x-slot>
@@ -14,9 +14,9 @@
                     <div class="card-header bg-white border-bottom py-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="font-semibold text-xl text-gray-800 leading-tight">
-                                {{__('Roles')}}
+                                {{__('Categorias')}}
                             </h5>
-                            <a href="{{route('roles.create')}}" >
+                            <a href="{{route('categorias.create')}}" >
                                 <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive"/>
                             </a>
                         </div>
@@ -37,29 +37,29 @@
                                     <tr>
                                         <th class="fw-bold text-dark ps-4">No</th>
                                         
-									<th >Name</th>
-									<th >Guard Name</th>
+									<th >Nombre</th>
+									<th >Descripcion</th>
 
                                         <th class="fw-bold text-dark text-end pe-4">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($roles as $role)
+                                    @foreach ($categorias as $categoria)
                                         <tr>
                                             <td class="ps-4">{{++$i}}</td>
                                             
-										<td >{{ $role->name }}</td>
-										<td >{{ $role->guard_name }}</td>
+										<td >{{ $categoria->nombre }}</td>
+										<td >{{ $categoria->descripcion }}</td>
 
                                             <td class="text-end pe-4">
                                                 <div class="btn-group gap-1">
-                                                <a href="{{route('roles.show', $role->id)}}">
+                                                <a href="{{route('categorias.show', $categoria->id)}}">
                                                     <x-wireui-button rounded warning label="Detalles" right-icon="information-circle"/>
                                                 </a>
-                                                    <a href="{{route('roles.edit', $role->id)}}"/>
+                                                    <a href="{{route('categorias.edit', $categoria->id)}}"/>
                                                         <x-wireui-button rounded teal right-icon="pencil" primary label="Editar" />
                                                     </a>
-                                                    <form action="{{route('roles.destroy', $role->id)}}" 
+                                                    <form action="{{route('categorias.destroy', $categoria->id)}}" 
                                                           method="POST" 
                                                           class="d-inline">
                                                         @csrf
@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="card-footer bg-white py-3">
-                        {!!$roles->withQueryString()->links()!!}
+                        {!!$categorias->withQueryString()->links()!!}
                     </div>
                 </div>
             </div>

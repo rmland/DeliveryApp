@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome'); 
-// });
 Route::redirect('/', '/dashboard');
 
 Route::middleware([
@@ -18,14 +17,15 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-Route::resource('administracion/users', UserController::class)->names('users');
-Route::resource('administracion/roles', RoleController::class)->names('roles');
 
 
 // Rutas publicas 
 Route::get('/menu', function () {
-    return view('public.menu');
-})->name('public.menu');
+    return view('public.menu');})->name('public.menu');
+
 Route::get('/contacto', function () {
-    return view('public.contacto');
-})->name('public.contacto');
+    return view('public.contacto');})->name('public.contacto');
+
+
+// rutas de administracion
+include('admin.php');

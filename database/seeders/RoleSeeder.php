@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -14,22 +13,33 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name'=>'admin']);
-        Role::create(['name'=>'user']);
+        $roleAdmin = Role::create(['name'=>'admin']);
+        $roleUser = Role::create(['name'=>'user']);
+        
+        Permission::create(['name' => 'navigation.admin'])->syncRoles([$roleAdmin]);
 
-        Permission::create(['name' => 'categorias.index']);
-        Permission::create(['name' => 'categorias.edit']);
-        Permission::create(['name' => 'categorias.delete']);
-        Permission::create(['name' => 'categorias.show']);
+        Permission::create(['name' => 'categorias.index'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'categorias.edit'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'categorias.delete'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'categorias.show'])->syncRoles([$roleAdmin]);
+        
+        Permission::create(['name' => 'menu.index'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'menu.edit'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'menu.delete'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'menu.show'])->syncRoles([$roleAdmin]);
+        
+        Permission::create(['name' => 'users.index'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'users.edit'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'users.delete'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'users.show'])->syncRoles([$roleAdmin]);
+        
+        Permission::create(['name' => 'roles.index'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'roles.edit'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'roles.delete'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'roles.show'])->syncRoles([$roleAdmin]);
 
-        Permission::create(['name' => 'menu.index']);
-        Permission::create(['name' => 'menu.edit']);
-        Permission::create(['name' => 'menu.delete']);
-        Permission::create(['name' => 'menu.show']);
-
-        Permission::create(['name' => 'users.index']);
-        Permission::create(['name' => 'users.edit']);
-        Permission::create(['name' => 'users.delete']);
-        Permission::create(['name' => 'users.show']);
+        Permission::create(['name' => 'public.menu'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'public.contacto'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'dashboard'])->syncRoles([$roleAdmin, $roleUser]);
     }
 }
