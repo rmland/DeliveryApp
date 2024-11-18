@@ -38,7 +38,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'roles.delete'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'roles.show'])->syncRoles([$roleAdmin]);
 
-        Permission::create(['name' => 'public.menu'])->syncRoles([$roleAdmin, $roleUser]);
         Permission::create(['name' => 'public.contacto'])->syncRoles([$roleAdmin, $roleUser]);
         Permission::create(['name' => 'dashboard'])->syncRoles([$roleAdmin, $roleUser]);
     }

@@ -95,7 +95,7 @@ class CategoriasAndPlatosSeeder extends Seeder
             'precio' => 9.99,
             'id_categoria' => 2,
             'disponible' => true,
-            'img_path' => 'p-margarita.jpg'
+            'img_path' => 'imagenes/menu/p-margarita.webp'
         ]);
 
         Plato::create([
@@ -105,7 +105,7 @@ class CategoriasAndPlatosSeeder extends Seeder
             'precio' => 11.99,
             'id_categoria' => 2,
             'disponible' => true,
-            'img_path' => 'imagenes/menu/p-margarita.webp'
+            'img_path' => 'imagenes/menu/p-pepperoni.webp'
         ]);
 
         Plato::create([
@@ -115,7 +115,7 @@ class CategoriasAndPlatosSeeder extends Seeder
             'precio' => 13.50,
             'id_categoria' => 2,
             'disponible' => true,
-            'img_path' => 'imagenes/menu/p-pepperoni.webp'
+            'img_path' => 'imagenes/menu/p-cuatro-quesos.webp'
         ]);
 
         Plato::create([
@@ -125,7 +125,7 @@ class CategoriasAndPlatosSeeder extends Seeder
             'precio' => 12.00,
             'id_categoria' => 2,
             'disponible' => true,
-            'img_path' => 'imagenes/menu/p-cuatro-quesos.webp'
+            'img_path' => 'imagenes/menu/p-hawai.webp'
         ]);
 
         Plato::create([

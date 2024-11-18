@@ -9,7 +9,7 @@
                     <div class="container">
                         <h1 class="display-4 text-dark mt-4">¡Deliciosa comida, directamente a tu puerta!</h1>
                         <p class="lead text-dark">Explora nuestro men&#250; y haz tu pedido en minutos. ¡Comida fresca y r&#225;pida, sin complicaciones!</p>
-                        <x-wireui-button primary xl label="Ordena Ahora" href="{{route('public.menu')}}" />
+                        <x-wireui-button primary xl label="Ordena Ahora" href="{{route('menu.index')}}" />
                     </div>
                 </section>
                 

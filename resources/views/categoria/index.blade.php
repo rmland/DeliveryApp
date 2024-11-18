@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <a href="{{route('categorias.index')}}">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Categorias
             </h2>
         </a>
@@ -16,18 +16,14 @@
                             <h5 class="font-semibold text-xl text-gray-800 leading-tight">
                                 {{__('Categorias')}}
                             </h5>
-                            <a href="{{route('categorias.create')}}" >
-                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive"/>
+                            <a href="{{route('categorias.create')}}">
+                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive" />
                             </a>
                         </div>
                     </div>
 
                     @if ($message = Session::get('success'))
-                        <div class="mx-3 mt-3">
-                            <x-wireui-alert title="¡Acción Exitosa!" positive>
-                                {{$message}}
-                            </x-alert>
-                        </div>
+                        <x-modal-alert></x-modal-alert>
                     @endif
 
                     <div class="card-body p-0">
@@ -36,39 +32,43 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th class="fw-bold text-dark ps-4">No</th>
-                                        
-									<th >Nombre</th>
-									<th >Descripcion</th>
+
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
 
                                         <th class="fw-bold text-dark text-end pe-4">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($categorias as $categoria)
-                                        <tr>
-                                            <td class="ps-4">{{++$i}}</td>
-                                            
-										<td >{{ $categoria->nombre }}</td>
-										<td >{{ $categoria->descripcion }}</td>
+                                    <tr>
+                                        <td class="ps-4">{{++$i}}</td>
 
-                                            <td class="text-end pe-4">
-                                                <div class="btn-group gap-1">
+                                        <td>{{ $categoria->nombre }}</td>
+                                        <td>{{ $categoria->descripcion }}</td>
+
+                                        <td class="text-end pe-4">
+                                            <div class="btn-group gap-1">
                                                 <a href="{{route('categorias.show', $categoria->id)}}">
-                                                    <x-wireui-button rounded warning label="Detalles" right-icon="information-circle"/>
+                                                    <x-wireui-button rounded warning label="Detalles"
+                                                        right-icon="information-circle" />
                                                 </a>
-                                                    <a href="{{route('categorias.edit', $categoria->id)}}"/>
-                                                        <x-wireui-button rounded teal right-icon="pencil" primary label="Editar" />
-                                                    </a>
-                                                    <form action="{{route('categorias.destroy', $categoria->id)}}" 
-                                                          method="POST" 
-                                                          class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <x-wireui-button label="Eliminar" right-icon="trash" interaction="negative" type="submit" rounded interaction="negative" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                <a href="{{route('categorias.edit', $categoria->id)}}" />
+                                                <x-wireui-button rounded teal right-icon="pencil" primary
+                                                    label="Editar" />
+                                                </a>
+                                                <form action="{{route('categorias.destroy', $categoria->id)}}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <x-wireui-button label="Eliminar" right-icon="trash"
+                                                        interaction="negative" type="submit" rounded
+                                                        interaction="negative"
+                                                        onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>

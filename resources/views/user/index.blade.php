@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
 
-                    <form action="#" method="get">
+                <form action="#" method="get">
                     <input name="search" type="text" placeholder="Busca un usuario">
                     <x-wireui-button type="submit" label="Buscar" />
                 </form>
@@ -20,18 +20,15 @@
                             <h5 class="fw-bold text-primary mb-0">
                                 {{__('Lista de usuarios')}}
                             </h5>
-                            <a href="{{route('users.create')}}" >
-                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive"/>
+                            <a href="{{route('users.create')}}">
+                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive" />
                             </a>
                         </div>
                     </div>
 
                     @if ($message = Session::get('success'))
-                    <div class="mx-3 mt-3 p-5">
-                        <x-wireui-alert title="¡Acción Exitosa!" positive>
-                            {{$message}}
-                            </x-alert>
-                    </div>
+
+                    <x-modal-alert></x-modal-alert>
                     @endif
 
                     <div class="card-body p-0">
@@ -55,19 +52,21 @@
                                         <td>{{ $user->email }}</td>
                                         <td class="text-end pe-4">
                                             <div class="btn-group gap-1">
-                                                <a href="{{route('users.show', $user->id)}}" >
-                                                    <x-wireui-button rounded warning label="Detalles" right-icon="information-circle"/>
+                                                <a href="{{route('users.show', $user->id)}}">
+                                                    <x-wireui-button rounded warning label="Detalles"
+                                                        right-icon="information-circle" />
                                                 </a>
-                                                    <a href="{{route('users.edit', $user->id)}}" />
-                                                        <x-wireui-button rounded teal right-icon="pencil" label="Editar" />
-                                                    </a>
+                                                <a href="{{route('users.edit', $user->id)}}" />
+                                                <x-wireui-button rounded teal right-icon="pencil" label="Editar" />
+                                                </a>
                                                 <form action="{{route('users.destroy', $user->id)}}" method="POST"
                                                     class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <x-wireui-button label="Delete" right-icon="trash" interaction="negative" type="submit"
-                                                    rounded interaction="negative"
-                                                    onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
+                                                    <x-wireui-button label="Delete" right-icon="trash"
+                                                        interaction="negative" type="submit" rounded
+                                                        interaction="negative"
+                                                        onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
                                                 </form>
                                             </div>
                                         </td>
@@ -79,7 +78,7 @@
                         @else
                         <x-wireui-alert title="No hay usuarios registrados!" warning />
                         @endif
-                       
+
                     </div>
                     <div class="card-footer bg-white py-3">
                         {!!$users->withQueryString()->links()!!}

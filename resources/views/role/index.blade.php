@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <a href="{{route('roles.index')}}">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Roles
             </h2>
         </a>
@@ -16,18 +16,15 @@
                             <h5 class="font-semibold text-xl text-gray-800 leading-tight">
                                 {{__('Roles')}}
                             </h5>
-                            <a href="{{route('roles.create')}}" >
-                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive"/>
+                            <a href="{{route('roles.create')}}">
+                                <x-wireui-button green label="Agregar" right-icon="plus" interaction="positive" />
                             </a>
                         </div>
                     </div>
 
                     @if ($message = Session::get('success'))
-                        <div class="mx-3 mt-3">
-                            <x-wireui-alert title="¡Acción Exitosa!" positive>
-                                {{$message}}
-                            </x-alert>
-                        </div>
+
+                    <x-modal-alert></x-modal-alert>
                     @endif
 
                     <div class="card-body p-0">
@@ -36,39 +33,43 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th class="fw-bold text-dark ps-4">No</th>
-                                        
-									<th >Name</th>
-									<th >Guard Name</th>
+
+                                        <th>Name</th>
+                                        <th>Guard Name</th>
 
                                         <th class="fw-bold text-dark text-end pe-4">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($roles as $role)
-                                        <tr>
-                                            <td class="ps-4">{{++$i}}</td>
-                                            
-										<td >{{ $role->name }}</td>
-										<td >{{ $role->guard_name }}</td>
+                                    <tr>
+                                        <td class="ps-4">{{++$i}}</td>
 
-                                            <td class="text-end pe-4">
-                                                <div class="btn-group gap-1">
+                                        <td>{{ $role->name }}</td>
+                                        <td>{{ $role->guard_name }}</td>
+
+                                        <td class="text-end pe-4">
+                                            <div class="btn-group gap-1">
                                                 <a href="{{route('roles.show', $role->id)}}">
-                                                    <x-wireui-button rounded warning label="Detalles" right-icon="information-circle"/>
+                                                    <x-wireui-button rounded warning label="Detalles"
+                                                        right-icon="information-circle" />
                                                 </a>
-                                                    <a href="{{route('roles.edit', $role->id)}}"/>
-                                                        <x-wireui-button rounded teal right-icon="pencil" primary label="Editar" />
-                                                    </a>
-                                                    <form action="{{route('roles.destroy', $role->id)}}" 
-                                                          method="POST" 
-                                                          class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <x-wireui-button label="Eliminar" right-icon="trash" interaction="negative" type="submit" rounded interaction="negative" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                <a href="{{route('roles.edit', $role->id)}}" />
+                                                <x-wireui-button rounded teal right-icon="pencil" primary
+                                                    label="Editar" />
+                                                </a>
+                                                <form action="{{route('roles.destroy', $role->id)}}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <x-wireui-button label="Eliminar" right-icon="trash"
+                                                        interaction="negative" type="submit" rounded
+                                                        interaction="negative"
+                                                        onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;" />
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>

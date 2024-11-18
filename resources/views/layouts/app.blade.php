@@ -62,10 +62,12 @@
                             <h5>Enlaces R&#225;pidos</h5>
                             <ul class="list-unstyled">
                                 <li><a href="{{route('dashboard')}}" class="text-white">Inicio</a></li>
-                                <li><a href="#" class="text-white">Men&#250;</a></li>
-                                <li><a href="#" class="text-white">Carrito</a></li>
+                                <li><a href="{{route('menu.index')}}" class="text-white">Men&#250;</a></li>
+                                <li><a href="{{route('carrito.index')}}" class="text-white">Carrito</a></li>
+                                <li><a href="{{route('public.contacto')}}" class="text-white">Contacto</a></li>
+                                @can('navigation.admin')
                                 <li><a href="{{route('users.index')}}" class="text-white">Administraci&#243;n</a></li>
-                                <li><a href="#" class="text-white">Contacto</a></li>
+                                @endcan
                             </ul>
                         </div>
                         <div class="col-md-4">

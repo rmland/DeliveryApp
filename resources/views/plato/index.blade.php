@@ -24,13 +24,9 @@
                             </a>
                         </div>
                     </div>
-
                     @if ($message = Session::get('success'))
-                    <div class="mx-3 mt-3">
-                        <x-wireui-alert title="¡Acción Exitosa!" positive>
-                            {{$message}}
-                            </x-alert>
-                    </div>
+                    
+                        <x-modal-alert></x-modal-alert>
                     @endif
 
                     <div class="card-body p-0 w-100">

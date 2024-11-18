@@ -18,8 +18,11 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('public.menu') }}" :active="request()->routeIs('public.menu')">
+                    <x-nav-link href="{{ route('menu.index') }}" :active="request()->routeIs('menu.index')">
                         {{ __('Menu') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('carrito.index') }}" :active="request()->routeIs('carrito.index  ')">
+                        {{ __('Carrito') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('public.contacto') }}" :active="request()->routeIs('public.contacto')">
                         {{ __('Contacto') }}
@@ -119,6 +122,12 @@
                             <x-dropdown-link href="{{ route('platos.index') }}">
                                 {{ __('Menus') }}
                             </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('pedidos.index') }}">
+                                {{ __('Pedidos') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('reportes.index') }}">
+                                {{ __('Reportes') }}
+                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -205,8 +214,11 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('public.menu') }}" :active="request()->routeIs('public.menu')">
+            <x-responsive-nav-link href="{{ route('menu.index') }}" :active="request()->routeIs('menu.index')">
                 {{ __('Menu') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('carrito.index') }}" :active="request()->routeIs('carrito.index')">
+                {{ __('Carrito') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('public.contacto') }}"
                 :active="request()->routeIs('public.contacto')">
@@ -229,7 +241,8 @@
             <x-responsive-nav-link href="{{ route('platos.index') }}" :active="request()->routeIs('platos.index')">
                 {{ __('Menus') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('categorias.index') }}" :active="request()->routeIs('categorias.index')">
+            <x-responsive-nav-link href="{{ route('categorias.index') }}"
+                :active="request()->routeIs('categorias.index')">
                 {{ __('Categorias') }}
             </x-responsive-nav-link>
         </div>
