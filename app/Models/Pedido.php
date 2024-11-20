@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pedido extends Model
 {
-    
+
     protected $perPage = 20;
 
     protected $table = 'pedidos';
@@ -35,4 +35,9 @@ class Pedido extends Model
     protected $fillable = ['cliente_id', 'fecha', 'total', 'estado', 'direccion_envio', 'notas'];
 
 
+    public function platos()
+    {
+        return $this->belongsToMany(Plato::class, 'pedido_has_plato', 'pedido_id', 'plato_id')
+            ->withPivot('cantidad');
+    }
 }

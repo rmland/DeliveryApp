@@ -64,7 +64,7 @@
                                 <li><a href="{{route('dashboard')}}" class="text-white">Inicio</a></li>
                                 <li><a href="{{route('menu.index')}}" class="text-white">Men&#250;</a></li>
                                 <li><a href="{{route('carrito.index')}}" class="text-white">Carrito</a></li>
-                                <li><a href="{{route('public.contacto')}}" class="text-white">Contacto</a></li>
+                                <li><a href="{{route('contacto.index')}}" class="text-white">Contacto</a></li>
                                 @can('navigation.admin')
                                 <li><a href="{{route('users.index')}}" class="text-white">Administraci&#243;n</a></li>
                                 @endcan

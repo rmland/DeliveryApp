@@ -5,9 +5,6 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    {{-- <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
-                    </a> --}}
                     <a href="{{route('dashboard')}}">
                         <x-application-logo />
                     </a>
@@ -16,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Inicio') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('menu.index') }}" :active="request()->routeIs('menu.index')">
                         {{ __('Menu') }}
@@ -24,7 +21,7 @@
                     <x-nav-link href="{{ route('carrito.index') }}" :active="request()->routeIs('carrito.index  ')">
                         {{ __('Carrito') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('public.contacto') }}" :active="request()->routeIs('public.contacto')">
+                    <x-nav-link href="{{ route('contacto.index') }}" :active="request()->routeIs('contacto.index')">
                         {{ __('Contacto') }}
                     </x-nav-link>
                 </div>
@@ -85,6 +82,16 @@
                     </x-dropdown>
                 </div>
                 @endif
+                @can('repartidor')
+                <div class="ms-3 relative">
+                    <div class="h-100">
+                        <x-nav-link href="{{ route('repartidor.pedidos.index') }}"
+                            :active="request()->routeIs('repartidor.pedidos.index')">
+                            {{ __('Pedidos en proceso') }}
+                        </x-nav-link>
+                    </div>
+                </div>
+                @endcan
                 @can('navigation.admin')
                 <!-- Dropdown Para las rutas de navegacion del area de administracion-->
                 <div class="ms-3 relative">
@@ -220,12 +227,22 @@
             <x-responsive-nav-link href="{{ route('carrito.index') }}" :active="request()->routeIs('carrito.index')">
                 {{ __('Carrito') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('public.contacto') }}"
-                :active="request()->routeIs('public.contacto')">
+            <x-responsive-nav-link href="{{ route('contacto.index') }}" :active="request()->routeIs('contacto.index')">
                 {{ __('Contacto') }}
             </x-responsive-nav-link>
         </div>
 
+        @can('repartidor')
+        <div class="pt-4 pb-1 border-t border-gray-200">
+            <span class="text-lg font-semibold text-gray-700 block mb-2 px-3">
+                Pedidos
+            </span>
+            <x-responsive-nav-link href="{{ route('repartidor.pedidos.index') }}"
+                :active="request()->routeIs('repartidor.pedidos')">
+                {{ __('Pedidos Pendientes') }}
+            </x-responsive-nav-link>
+        </div>
+        @endcan
         @can('navigation.admin')
         {{-- Links de navegacion responsiv --}}
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -244,6 +261,12 @@
             <x-responsive-nav-link href="{{ route('categorias.index') }}"
                 :active="request()->routeIs('categorias.index')">
                 {{ __('Categorias') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('reportes.index') }}" :active="request()->routeIs('reportes.index')">
+                {{ __('Reportes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('pedidos.index') }}" :active="request()->routeIs('pedidos.index')">
+                {{ __('Pedidos') }}
             </x-responsive-nav-link>
         </div>
         @endcan

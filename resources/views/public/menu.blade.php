@@ -18,12 +18,11 @@
         <div class="w-100 d-flex justify-content-end mb-3">
             <form action="#" class="d-flex gap-2 align-items-center">
                 <label for="categorias">Busca por categorias</label>
-                <select id="categorias" name="categoria" class="form-select" name="" id="">
+                <select id="categorias" name="categoria" class="form-select" onchange="this.form.submit()">
                     @foreach ($categorias as $categoria)
                     <option name="categoria" value="{{ $categoria->nombre }}">{{ $categoria->nombre }}</option>
                     @endforeach
                 </select>
-                <x-wireui-button primary type="submit">Ver</x-wireui-button>
             </form>
         </div>
         <!-- Tarjetas de platillos -->

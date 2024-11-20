@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrito;
+use App\Models\Direccione;
 use App\Models\Pedido;
 use App\Models\PedidoHasPlato;
 use App\Models\Plato;
@@ -21,7 +22,9 @@ class CarritoController extends Controller
         $totalPrecio = $carritoItems->sum(function ($item) {
             return $item->plato->precio * $item->cantidad;
         });
-        return view('carrito.index', compact('carritoItems', 'totalPrecio'));
+
+        $direcciones = Direccione::where('id_user', $id_user)->get();
+        return view('carrito.index', compact('carritoItems', 'totalPrecio', 'direcciones'));
     }
 
     public function destroy($id): RedirectResponse
@@ -40,7 +43,12 @@ class CarritoController extends Controller
             $pedido = new Pedido();
             $pedido->cliente_id = $id_user;
             $pedido->fecha = now();
+            $pedido->direccion_envio = $request->direccion;
+            if ($request->get('nota')) {
+                $pedido->notas =  $request->get('nota');
+            }
             $pedido->total = 0.0;
+
             $pedido->save();
 
             $carritoItems = Carrito::where('id_user', $id_user)->get();
@@ -54,8 +62,8 @@ class CarritoController extends Controller
                 $pedidohasplato->subtotal = $item->plato->precio * $item->cantidad;
                 $pedidohasplato->save();
             }
-            
-            $platosinpedido = PedidoHasPlato::where('pedido_id',$pedido->id)->get();
+
+            $platosinpedido = PedidoHasPlato::where('pedido_id', $pedido->id)->get();
             $pedido->total = $platosinpedido->sum(function ($item) {
                 return $item->plato->precio * $item->cantidad;
             });
@@ -82,5 +90,29 @@ class CarritoController extends Controller
             return Redirect::route('menu.index')
                 ->with('success', 'Plato Agregado al carrito correctamente.');
         }
+    }
+    public function show()
+    {
+        $id_user = auth()->user()->id;
+        $pedidosPendientes = Pedido::where('cliente_id', $id_user)
+            ->where(function ($query) {
+                $query->where('estado', 'pendiente')
+                    ->orWhere('estado', 'en_proceso');
+            })
+            ->with(['platos' => function ($query) {
+                $query->withPivot('cantidad');
+            }])
+            ->get();
+
+        return view('carrito.pedidos-pendientes', compact('pedidosPendientes'));
+    }
+    public function update($id)
+    {
+        $pedido = Pedido::where('id', $id)->first();
+        $pedido->estado = 'cancelado';
+        $pedido->save();
+
+
+        return redirect()->route('carrito.pendientes')->with('success', 'El pedido ha sido cancelado exitosamente.');
     }
 }

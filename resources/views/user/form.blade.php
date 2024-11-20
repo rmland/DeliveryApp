@@ -24,6 +24,8 @@
                                 <label for="admin">Administrador</label>
                                 <input type="radio" id="user" name="rol" value="user" />
                                 <label for="user">Usuario</label>
+                                <input type="radio" id="repartidor" name="rol" value="repartidor" />
+                                <label for="repartidor">Repartidor</label>
                             </div>
                         </div>
                         <x-wireui-errors title="Encontramos {errors} error(es) de validacion" />

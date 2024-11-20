@@ -17,11 +17,11 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        if($request->input('search')){
+        if ($request->input('search')) {
             $search = $request->input('search');
-            $users = User::where('name','LIKE',"%".$search."%")->orwhere('email','LIKE',"%".$search."%")->paginate(10);
+            $users = User::where('name', 'LIKE', "%" . $search . "%")->orwhere('email', 'LIKE', "%" . $search . "%")->orWhere('id',$search)->paginate(10);
             return view('user.index', compact('users'))
-            ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
+                ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
         }
 
         $users = User::paginate(10);
@@ -69,7 +69,7 @@ class UserController extends Controller
         $rol = Role::where('');
         $user = User::find($id);
 
-        return view('user.edit', compact('user','rol'));
+        return view('user.edit', compact('user', 'rol'));
     }
 
     /**
@@ -77,14 +77,16 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user): RedirectResponse
     {
-        $user->update($request->validated());        
+        $user->update($request->validated());
 
-        if($request->input('rol')){
+        if ($request->input('rol')) {
             $rol = $request->input('rol');
-            $oldRole = $user->getRoleNames()->first();
-            
-            $user->removeRole($oldRole);
 
+            $oldRole = $user->getRoleNames()->first();
+
+            if ($oldRole) {
+                $user->removeRole($oldRole);
+            }
             $user->assignRole($rol);
         }
 

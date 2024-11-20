@@ -40,4 +40,8 @@ class Plato extends Model
     {
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
+    public function pedidos()
+    {
+        return $this->belongsToMany(Pedido::class, 'pedido_has_plato', 'plato_id', 'pedido_id');
+    }
 }
