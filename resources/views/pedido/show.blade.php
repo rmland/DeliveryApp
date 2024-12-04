@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$pedido->name ?? __('Show') . " " . __('Pedido')}}
+            {{$pedido->name ?? __('Detalles de ') . " " . __('Pedido')}}
         </h2>
     </x-slot>
 

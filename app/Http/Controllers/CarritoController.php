@@ -11,13 +11,21 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
 
 class CarritoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+
         $id_user = auth()->user()->id;
+
         $carritoItems = Carrito::where('id_user', $id_user)->get();
         $totalPrecio = $carritoItems->sum(function ($item) {
             return $item->plato->precio * $item->cantidad;
@@ -87,7 +95,7 @@ class CarritoController extends Controller
                 $carrito->id_user = $id_user;
                 $carrito->save();
             }
-            return Redirect::route('menu.index')
+            return back()
                 ->with('success', 'Plato Agregado al carrito correctamente.');
         }
     }

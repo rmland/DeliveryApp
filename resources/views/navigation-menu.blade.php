@@ -139,7 +139,8 @@
                     </x-dropdown>
                 </div>
                 @endcan
-                <!-- Settings Dropdown -->
+                @auth
+                     <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -194,6 +195,10 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                @endauth
+                @guest
+                <x-wireui-button outline black  href="{{ route('login') }}">Iniciar Sesión</x-wireui-button>
+            @endguest
             </div>
 
             <!-- Hamburger -->
@@ -271,6 +276,7 @@
         </div>
         @endcan
         <!-- Responsive Settings Options -->
+        @auth
         <div class="pt-4 pb-1 border-t border-gray-200">
             <span class="text-lg font-semibold text-gray-700 block mb-2 px-3">
                 Cuenta
@@ -346,5 +352,9 @@
                 @endif
             </div>
         </div>
+        @endauth
+        @guest
+            <x-wireui-button outline black class="ms-4 my-4" href="{{ route('login') }}">Iniciar Sesión</x-wireui-button>
+        @endguest
     </div>
 </nav>

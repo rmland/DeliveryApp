@@ -57,7 +57,7 @@ class SendMensajeContactoMail extends Mailable
                     ->view('emails.contacto')
                     ->with([
                         'nombre' => $this->data['nombre'],
-                        'email' => $this->data['email'],
+                        'email' => $this->data['correo'],
                         'telefono' => $this->data['telefono'],
                         'mensaje' => $this->data['mensaje'],
                     ]);

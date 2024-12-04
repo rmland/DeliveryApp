@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Pedido;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Routing\Controller;
 class ReportesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
         $chartType = $request->get('chart_type');

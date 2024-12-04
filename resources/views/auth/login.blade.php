@@ -30,7 +30,7 @@
                 <div class="block mt-4">
                     <label for="remember_me" class="flex items-center">
                         <x-checkbox id="remember_me" name="remember" />
-                        <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        <span class="ms-2 text-sm text-gray-600">{{ __('Recuerdame') }}</span>
                     </label>
                 </div>
 
@@ -38,12 +38,12 @@
                     @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Olvidaste tu contraseña?') }}
                     </a>
                     @endif
-                    <x-wireui-button outline black label="Register" href="/register" class="ml-4" />
-                    <x-button class="ms-4">
-                        {{ __('Log in') }}
+                    <x-wireui-button outline black label="Registrarse" href="/register" class="ms-1" />
+                    <x-wireui-button primary type="submit" class="ms-1">
+                        {{ __('Log In') }}
                     </x-button>
                 </div>
             </form>

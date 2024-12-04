@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$categoria->name ?? __('Show') . " " . __('Categoria')}}
+            {{$categoria->name ?? __('Detalles de ') . " " . __('Categoria')}}
         </h2>
     </x-slot>
 

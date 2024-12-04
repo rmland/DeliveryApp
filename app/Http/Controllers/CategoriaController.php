@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriaRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Routing\Controller;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request): View
     {
         $categorias = Categoria::paginate();
@@ -22,9 +24,6 @@ class CategoriaController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $categorias->perPage());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
     {
         $categoria = new Categoria();
@@ -32,9 +31,6 @@ class CategoriaController extends Controller
         return view('categoria.create', compact('categoria'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CategoriaRequest $request): RedirectResponse
     {
         Categoria::create($request->validated());
@@ -43,9 +39,6 @@ class CategoriaController extends Controller
             ->with('success', 'Categoria created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id): View
     {
         $categoria = Categoria::find($id);
@@ -53,9 +46,7 @@ class CategoriaController extends Controller
         return view('categoria.show', compact('categoria'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit($id): View
     {
         $categoria = Categoria::find($id);
@@ -63,9 +54,7 @@ class CategoriaController extends Controller
         return view('categoria.edit', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(CategoriaRequest $request, Categoria $categoria): RedirectResponse
     {
         $categoria->update($request->validated());

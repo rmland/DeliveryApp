@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class RepartidorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $pedidos = Pedido::where('estado', 'pendiente')->orWhere('estado', 'en_proceso')->paginate();

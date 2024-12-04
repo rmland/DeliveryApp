@@ -40,4 +40,5 @@ class Pedido extends Model
         return $this->belongsToMany(Plato::class, 'pedido_has_plato', 'pedido_id', 'plato_id')
             ->withPivot('cantidad');
     }
+    
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$plato->name ?? __('Show') . " " . __('Plato')}}
+            {{$plato->name ?? __('Detalles de ') . " " . __('Plato')}}
         </h2>
     </x-slot>
 

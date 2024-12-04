@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{__('Create')}} Direccione
+            {{__('Crear un nuevo registro de ')}} Direccione
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <div class="card-header bg-white border-bottom py-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="fw-bold text-primary mb-0">
-                                {{__('Create')}} Direccione
+                                {{__('Crear un nuevo registro de ')}} Direccion
                             </h5>
                             <x-wireui-button icon="home" label="Regresar" href="{{route('direcciones.index')}}"/>
                         </div>

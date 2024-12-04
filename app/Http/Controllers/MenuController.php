@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Plato;
 use Illuminate\Http\Request;
-
 class MenuController extends Controller
 {
     public function index(Request $request){
