@@ -52,11 +52,11 @@
                                         <tr>
                                             <td class="ps-4">{{++$i}}</td>
                                             
-										<td >{{ $pedido->cliente_id }}</td>
+										<td >{{ $pedido->name }}</td>
 										<td >{{ $pedido->fecha }}</td>
 										<td >{{ $pedido->total }}</td>
 										<td >{{ $pedido->estado }}</td>
-										<td >{{ $pedido->direccion_envio }}</td>
+										<td >{{ $pedido->direccion }}</td>
 										<td >{{ $pedido->notas }}</td>
 
                                             <td class="text-end pe-4">

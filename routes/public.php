@@ -12,6 +12,5 @@ Route::get('/carrito/pedidos-pendientes', [CarritoController::class, 'show'])->n
 Route::resource('/carrito', CarritoController::class)->names('carrito');
 Route::resource('/menu', MenuController::class)->names('menu');
 Route::resource('/contacto', ContactoController::class)->names('contacto');
-
 Route::get('direcciones/add',[DireccioneController::class, 'add'])->name('direcciones.add');
 Route::resource('direcciones', DireccioneController::class);

@@ -39,12 +39,12 @@
                                     {{ $plato->precio }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Categoria:</strong>
-                                    {{ $plato->id_categoria }}
+                                    <strong>Categoria:</strong>
+                                    {{ $plato->categoria->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Disponible:</strong>
-                                    {{ $plato->disponible }}
+                                    {{ $plato->disponible == 1 ? 'Disponible' : 'No Disponible' }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Img Path:</strong>

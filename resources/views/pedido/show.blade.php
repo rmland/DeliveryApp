@@ -27,8 +27,8 @@
                                 <tbody>
                                     
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Cliente Id:</strong>
-                                    {{ $pedido->cliente_id }}
+                                    <strong>Cliente:</strong>
+                                    {{ $pedido->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Fecha:</strong>
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Direccion Envio:</strong>
-                                    {{ $pedido->direccion_envio }}
+                                    {{ $pedido->direccion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Notas:</strong>

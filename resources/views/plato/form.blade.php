@@ -28,10 +28,11 @@
                             <label for="id_categoria" class="form-label">{{ __('Categoria') }}</label>
                             <x-wireui-native-select  name="id_categoria" id="id_categoria" 
                                 placeholder="Selecciona la disponibilidad del plato">
-                                <option value="1" {{ $plato?->id_categoria == 1 ? 'selected' : '' }}>Hamburguesa</option>
-                                <option value="2" {{ $plato?->id_categoria == 2 ? 'selected' : '' }}>Pizza</option>
-                                <option value="3" {{ $plato?->id_categoria == 3 ? 'selected' : '' }}>Pasta</option>
-                                <option value="4" {{ $plato?->id_categoria == 4 ? 'selected' : '' }}>Sushi</option>
+                            @if ($categorias)
+                            @foreach ($categorias as $categoria )
+                                <option value="{{ $categoria->id }}" {{ $plato?->id_categoria == $categoria->id ? 'selected' : '' }}>{{ $categoria?->nombre }}</option>
+                            @endforeach
+                            @endif
                             </x-wireui-native-select>
                             {!! $errors->first('id_categoria') !!}
                         </div>

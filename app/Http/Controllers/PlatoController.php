@@ -25,9 +25,11 @@ class PlatoController extends Controller
     }
     public function create(): View
     {
+        
+        $categorias = Categoria::all();
         $plato = new Plato();
 
-        return view('plato.create', compact('plato'));
+        return view('plato.create', compact('plato', 'categorias'));
     }
     public function store(PlatoRequest $request): RedirectResponse
     {
@@ -44,9 +46,9 @@ class PlatoController extends Controller
     }
     public function edit($id): View
     {
+        $categorias = Categoria::all();
         $plato = Plato::find($id);
-
-        return view('plato.edit', compact('plato'));
+        return view('plato.edit', compact('plato', 'categorias'));
     }
     public function update(PlatoRequest $request, Plato $plato): RedirectResponse
     {

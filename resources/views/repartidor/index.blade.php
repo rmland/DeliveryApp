@@ -35,7 +35,7 @@
                             @forelse ($pedidos as $pedido)
                             <tr class="border-b hover:bg-gray-50 transition-colors text-center">
                                 <td class="p-3 text-blue-600 font-bold">#{{ $pedido->id }}</td>
-                                <td class="p-3">{{ $pedido->cliente->name ?? 'N/A' }}</td>
+                                <td class="p-3">{{ $pedido->name ?? 'N/A' }}</td>
                                 <td class="p-3 text-gray-500">
                                     <small>{{ $pedido->fecha }}</small>
                                 </td>
@@ -55,7 +55,7 @@
                                         {{ ucfirst(str_replace('_', ' ', $pedido->estado)) }}
                                     </span>
                                 </td>
-                                <td class="p-3 text-gray-600">{{ Str::limit($pedido->direccion_envio, 20) }}</td>
+                                <td class="p-3 text-gray-600">{{ Str::limit($pedido->direccion, 50) }}</td>
                                 <td class="p-3 text-gray-500">{{ Str::limit($pedido->notas, 15) }}</td>
                                 <td class="p-3">
                                     <div class="flex flex-col space-y-2">

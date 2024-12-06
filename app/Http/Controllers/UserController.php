@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function __construct()
@@ -38,7 +39,18 @@ class UserController extends Controller
     }
     public function store(UserRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        if ($request->input('rol')) {
+            $rol = $request->input('rol');
+            $user->assignRole($rol);
+        }else{
+            $user->assignRole('user');
+        }
+        $user->password = Hash::make('password');
+
+        $user->save();
 
         return Redirect::route('users.index')
             ->with('success', 'User created successfully.');
@@ -59,7 +71,6 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user): RedirectResponse
     {
         $user->update($request->validated());
-
         if ($request->input('rol')) {
             $rol = $request->input('rol');
 
@@ -70,7 +81,7 @@ class UserController extends Controller
             }
             $user->assignRole($rol);
         }
-
+        $user->save();
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');
     }

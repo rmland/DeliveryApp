@@ -11,9 +11,9 @@ class MenuController extends Controller
         if($request->input('categoria')){
             $categoriaName = $request->input('categoria');
             $categoria = Categoria::where('nombre', $categoriaName)->get()->first();
-            $platos = Plato::where('id_categoria',$categoria->id)->get();
+            $platos = Plato::where('id_categoria',$categoria->id)->where('disponible', 1)->get();
         }else{
-            $platos = Plato::where('id_categoria',1)->get();
+            $platos = Plato::where('id_categoria',1)->where('disponible', 1)->get();
         }
         $categorias = Categoria::all();
         return view('public.menu', compact('platos', 'categorias'));

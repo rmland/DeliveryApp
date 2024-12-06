@@ -20,7 +20,7 @@
                 <label for="categorias">Busca por categorias</label>
                 <select id="categorias" name="categoria" class="form-select" onchange="this.form.submit()">
                     @foreach ($categorias as $categoria)
-                    <option name="categoria" value="{{ $categoria->nombre }}">{{ $categoria->nombre }}</option>
+                    <option name="categoria" value="{{ $categoria->nombre }}" {{ request('categoria') == $categoria->nombre ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
                     @endforeach
                 </select>
             </form>

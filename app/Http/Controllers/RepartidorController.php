@@ -15,7 +15,11 @@ class RepartidorController extends Controller
     }
     public function index()
     {
-        $pedidos = Pedido::where('estado', 'pendiente')->orWhere('estado', 'en_proceso')->paginate();
+        $pedidos = DB::connection('mysql_second')->table('pedidos')
+        ->join('deliveryapp.users AS mitabla2', 'pedidos.cliente_id', '=', 'mitabla2.id')
+        ->join('deliveryapp.direcciones AS mitabla3', 'mitabla2.id', '=', 'mitabla3.id_user')
+        ->select('pedidos.id', 'mitabla2.name','pedidos.total','pedidos.fecha','pedidos.estado','mitabla3.direccion', 'pedidos.notas')
+        ->where('pedidos.estado', 'pendiente')->orWhere('pedidos.estado', 'en_proceso')->paginate();
         return view('repartidor.index', compact('pedidos'));
     }
     public function update(Request $request, $id)
